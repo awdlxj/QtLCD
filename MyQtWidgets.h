@@ -3,6 +3,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_MyQtWidgets.h"
 #include <qtimer.h>
+#include <QKeyEvent>
+
 
 class MyQtWidgets : public QMainWindow
 {
@@ -11,6 +13,8 @@ class MyQtWidgets : public QMainWindow
 public:
     MyQtWidgets(QWidget *parent = Q_NULLPTR);
     
+protected:
+    virtual void keyPressEvent(QKeyEvent* ev);
 
 private slots:
 
@@ -21,7 +25,9 @@ private slots:
      void handleTimeout();
 
      void slidermove();
-
+     void slidermove2();
+     void reset1();
+     void reset2();
 private:
     Ui::MyQtWidgetsClass ui;
 };

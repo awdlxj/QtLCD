@@ -36,6 +36,21 @@
       <property name="cursor">
        <cursorShape>ArrowCursor</cursorShape>
       </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
       <property name="smallDecimalPoint">
        <bool>false</bool>
       </property>
@@ -43,7 +58,7 @@
        <number>14</number>
       </property>
       <property name="segmentStyle">
-       <enum>QLCDNumber::Filled</enum>
+       <enum>QLCDNumber::Flat</enum>
       </property>
       <property name="value" stdset="0">
        <double>88888888888888.000000000000000</double>
@@ -70,7 +85,7 @@
              </font>
             </property>
             <property name="text">
-             <string>RealTime: 0.0000000 s</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RealTime: &lt;span style=&quot; color:#ff0000;&quot;&gt;0.0000000&lt;/span&gt; s&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -82,7 +97,7 @@
              </font>
             </property>
             <property name="text">
-             <string>TimerFrequency: 0 Hz</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TimerFrequency: &lt;span style=&quot; color:#ff0000;&quot;&gt;0.00&lt;/span&gt; Hz&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -94,7 +109,7 @@
              </font>
             </property>
             <property name="text">
-             <string>DisplayFlashFrequency: 0.00 FPS</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DisplayFlashFrequency: &lt;span style=&quot; color:#ff0000;&quot;&gt;0.00&lt;/span&gt; FPS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -106,7 +121,7 @@
              </font>
             </property>
             <property name="text">
-             <string>DisplayFlashTime: 0.000 ms</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DisplayFlashTime: &lt;span style=&quot; color:#ff0000;&quot;&gt;0.000&lt;/span&gt; ms&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -149,6 +164,13 @@
               <widget class="QCommandLinkButton" name="commandLinkButton_3">
                <property name="text">
                 <string>停止计时</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCommandLinkButton" name="commandLinkButton_4">
+               <property name="text">
+                <string>同步系统时间</string>
                </property>
               </widget>
              </item>

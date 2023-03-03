@@ -5,6 +5,7 @@
 #include "timer.h"
 #include <QTimer>
 #include <qmath.h>
+#include <qtime>
 
 
 using namespace std;
@@ -30,7 +31,7 @@ MyQtWidgets::MyQtWidgets(QWidget* parent)//初始化
     beilv = qPow(1.01, ui.dial_2->value() - 500);
     ui.pushButton_2->setText("x" + QString::number(beilv, 'f', 3));
 
-    ui.lcdNumber->setStyleSheet("background-color: black");//背景颜色
+    ui.lcdNumber->setStyleSheet("background-color: grey");//背景颜色
 
     connect(qtimer1, SIGNAL(timeout()), this, SLOT(handleTimeout()));
 
@@ -38,6 +39,9 @@ MyQtWidgets::MyQtWidgets(QWidget* parent)//初始化
     connect(ui.dial_2, SIGNAL(valueChanged(int)), this, SLOT(slidermove2()));
     connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(reset1()));
     connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(reset2()));
+    
+
+    ui.lcdNumber->setSegmentStyle(QLCDNumber::Flat);
 }
     
 //键盘按下触发事件
@@ -95,8 +99,8 @@ void MyQtWidgets::handleTimeout()//刷新LCD和标签
     else;
 
 
-    ui.label->setText("RealTime: " + QString::number(timenumber, 'f', 7) + " s");
-    ui.label_2->setText("TimerFrequency: " + QString::number(timerfreq, 'f', 2) + " Hz");
+    ui.label->setText("<html><head/><body><p>RealTime: <span style=\" color:#ff0000; \">" + QString::number(timenumber, 'f', 7) + "</span> s</p></body></html>");
+    ui.label_2->setText("<html><head/><body><p>TimerFrequency: <span style=\" color:#ff0000; \">" + QString::number(timerfreq, 'f', 2) + "</span> Hz</p></body></html>");
 
     if (stop1 == 0)//设置对应状态的颜色
     {
@@ -119,14 +123,15 @@ void MyQtWidgets::handleTimeout()//刷新LCD和标签
 
     fps = 1.0 / timer2.endtimer();
     timer2.starttimer();
-    ui.label_3->setText("DisplayFashFrequency: " + QString::number(fps, 'f', 2) + " FPS");
-    ui.label_4->setText("DisplayFlashTime: " + QString::number(1000.0 / fps, 'f', 3) + " ms");
+    ui.label_3->setText("<html><head/><body><p>DisplayFlashFrequency: <span style=\" color:#ff0000; \">" + QString::number(fps, 'f', 2) + "</span> FPS</p></body></html>");
+    ui.label_4->setText("<html><head/><body><p>DisplayFlashTime: <span style=\" color:#ff0000; \">" + QString::number(1000.0 / fps, 'f', 3) + "</span> ms</p></body></html>");
 
 }
 
 void MyQtWidgets::on_commandLinkButton_clicked()//开始计时
 {
     stop1 = 0;
+    timenumber2 = 0;
     timerfreq = timer1.gettimerfreq();
     timer2.gettimerfreq();
     timer1.starttimer();
@@ -145,6 +150,28 @@ void MyQtWidgets::on_commandLinkButton_3_clicked()//停止
     timenumber = 0;
     timer1.endtimer();
 }
+void MyQtWidgets::on_commandLinkButton_4_clicked()
+{
+    stop1 = 2;
+    timenumber2 = 0;
+    timenumber = 0;
+    timer1.endtimer();//停止
+
+    QTime current_time = QTime::currentTime();
+
+    stop1 = 0;
+    timerfreq = timer1.gettimerfreq();
+    timer2.gettimerfreq();
+    timer1.starttimer();
+    qtimer1->start(qPow(1.01, ui.dial->value()) / 20);
+
+    ui.dial_2->setValue(500);
+    ui.dial_2->setSliderPosition(500);
+
+    timenumber2 = current_time.msec() / 1000.0 + current_time.second() + current_time.minute() * 60.0 + current_time.hour() * 3600;
+
+}
+
 void MyQtWidgets::slidermove()//
 {
     double tmp = qPow(1.01, ui.dial->value()) / 20;

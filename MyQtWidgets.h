@@ -21,13 +21,14 @@ private slots:
      void on_commandLinkButton_clicked();
      void on_commandLinkButton_2_clicked();
      void on_commandLinkButton_3_clicked();
-     
+     void on_commandLinkButton_4_clicked();
      void handleTimeout();
 
      void slidermove();
      void slidermove2();
      void reset1();
      void reset2();
+     
 private:
     Ui::MyQtWidgetsClass ui;
 };
